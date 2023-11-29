@@ -1,0 +1,8 @@
+pip
+zarr
+tqdm
+xarray
+zipfile
+rioxarray
+matplotlib
+OSGridConverter
