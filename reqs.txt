@@ -1,8 +1,8 @@
-pip
+future_fstrings
 zarr
 tqdm
 xarray
-zipfile
+rasterio==1.3.6
 rioxarray
 matplotlib
 OSGridConverter
