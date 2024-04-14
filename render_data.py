@@ -60,6 +60,19 @@ def update_displacement_scaling(scale):
     return plane
 
 
+def update_gpu_use(gpu):
+    bpy.data.scenes[0].render.engine = 'CYCLES'
+    device_prefs = bpy.context.preferences.addons["cycles"].preferences
+    if gpu:
+        device_prefs.compute_device_type = 'CUDA'
+        bpy.context.scene.cycles.device = "GPU"
+        for d in device_prefs.devices:
+            d['use'] = 1
+    else:
+        device_prefs.compute_device_type = 'NONE'
+    return device_prefs
+
+
 def do_render(fpath):
     bpy.context.scene.render.image_settings.file_format = 'PNG'
     bpy.context.scene.render.filepath = fpath
@@ -113,6 +126,10 @@ if __name__ == '__main__':
         '--vscale', type=float, nargs='?', default=0.0001,
         help='Vertical displacement multiplier from DSM'
     )
+    parser.add_argument(
+        '--gpu', type=bool, nargs='?', default=False,
+        help='To use GPU or not'
+    )
     
     args = parser.parse_args()
 
@@ -135,5 +152,7 @@ if __name__ == '__main__':
     world = update_surface_emission(args.surface_brightness)
 
     material = update_displacement_scaling(args.vscale)
+
+    device_prefs = update_gpu_use(args.gpu)
 
     do_render('render.png')
