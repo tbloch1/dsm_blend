@@ -6,7 +6,7 @@ This repo contains everything needed to:
 
 Steps:
 1. `cd` into the repo folder.
-2. `bash dsm_blend_docker_setup`.
+2. `bash dsm_blend_docker_setup.sh`.
 3. Enter the container (I attach vscode and do it that way).
 4. Edit `run.sh` with desired coordinates and blender config* (more below).
 5. `bash run.sh`.
@@ -14,6 +14,7 @@ Steps:
 
 Notes:
 - The docker image is probably over-the-top for this, but it's just the one I use for everything...
+- If you don't have a GPU, you should comment out line 42 (`--gpus all \`) in `bash dsm_blend_docker_setup.sh` - so that you don't get errors trying to mount non-existent GPUs.
 - The arguments for render_data.py are explained in a little more detail in the python script. These are mostly trial and error and depend on the specific area you are rendering. But largely the only ones you need to change are:
   - `gpu`. Set to False by default, this should work if you don't have a GPU. Set to True if
   you do have a GPU.
