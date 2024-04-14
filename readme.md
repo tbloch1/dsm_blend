@@ -15,6 +15,8 @@ Steps:
 Notes:
 - The docker image is probably over-the-top for this, but it's just the one I use for everything...
 - The arguments for render_data.py are explained in a little more detail in the python script. These are mostly trial and error and depend on the specific area you are rendering. But largely the only ones you need to change are:
+  - `gpu`. Set to False by default, this should work if you don't have a GPU. Set to True if
+  you do have a GPU.
   - `rp`. Set this to 10-25 for initial renders, as it will be faster and you get some idea of how it will look. Usually the contrast increases a bit when you up `rp`.
   - `vscale`. This changes the vertical scaling of the data. Practically, this affects shadow lengths and depth. Too low and the details appear a bit washed out. But too high and streets can appear too shadowed and details appear lost.
   - `sun_brightness` and `surface_brightness`. Together, these affect (surprisingly) the brightness of the render. Broadly I find that `sun_brightness` is best use to increase the definition of the shadows, while `surface_brightness` is best used to soften the shadows,
